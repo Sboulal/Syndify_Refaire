@@ -1,0 +1,130 @@
+<div class="flex h-screen bg-slate-50">
+    
+    <app-sidebar role="syndic"></app-sidebar>
+    
+    <main class="flex-1 overflow-y-auto p-6">
+        
+        <header class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm mb-6 border border-gray-100">
+            <div class="text-base font-medium text-gray-700">
+                Bienvenue, <span class="font-bold text-gray-900">[Syndic User Name]</span>! | Résidence : <span class="font-semibold text-gray-800">Les Jardins de Majorelle</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+                </button>
+                <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-10 h-10 rounded-full border border-gray-200">
+            </div>
+        </header>
+
+        <div class="flex justify-between items-center mb-5">
+            <div class="flex items-center gap-3">
+                <h2 class="text-xl font-bold text-[#13243c]">Vue d'ensemble</h2>
+                <span class="text-sm font-semibold bg-orange-100 text-orange-600 px-3 py-1 rounded-full">En cours</span>
+            </div>
+            <button class="bg-[#13243c] text-white px-5 py-2.5 rounded-md text-base font-semibold hover:bg-blue-900 transition shadow-sm">
+                Nouveau Signalement
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                <span class="text-4xl font-bold text-red-500">12</span>
+                <span class="text-sm font-bold text-gray-700 mt-2">Incidents Ouverts</span>
+                <span class="text-xs font-semibold text-gray-400 mt-1">(3 Urgents)</span>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                <span class="text-4xl font-bold text-green-500">85%</span>
+                <span class="text-sm font-bold text-gray-700 mt-2">Copropriétaires à Jour</span>
+                <span class="text-xs font-semibold text-gray-400 mt-1">(7 Retards)</span>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                <span class="text-xs font-bold text-gray-500">Total Encaissements:</span>
+                <span class="text-2xl font-bold text-green-600 my-2">125,500 MAD</span>
+                <span class="text-xs font-semibold text-gray-400">(Ce Mois)</span>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                <span class="text-4xl font-bold text-[#3b82f6]">5</span>
+                <span class="text-sm font-bold text-gray-700 mt-2">Devis en Attente</span>
+                <span class="text-xs font-semibold text-gray-400 mt-1">d'Approbation</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="font-bold text-gray-800 text-lg">Derniers Incidents Signalés</h3>
+                    <div class="flex gap-3">
+                        <select class="text-sm border border-gray-200 rounded-md px-3 py-1.5 outline-none text-gray-600 bg-gray-50"><option>Filtre...</option></select>
+                        <button class="bg-[#13243c] text-white text-sm px-4 py-1.5 rounded-md flex items-center gap-2">
+                            <i class="fa-solid fa-filter"></i> Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="text-gray-500 border-b border-gray-100">
+                            <th class="pb-3 font-semibold">ID</th>
+                            <th class="pb-3 font-semibold">Sujet</th>
+                            <th class="pb-3 font-semibold">Signalé par</th>
+                            <th class="pb-3 font-semibold">Date ↓</th>
+                            <th class="pb-3 font-semibold">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-50">
+                            <td class="py-4 font-medium">331</td>
+                            <td class="py-4 font-semibold">Panne Ascenseur B</td>
+                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=12" class="w-7 h-7 rounded-full"> Sinan Name</td>
+                            <td class="py-4 text-gray-500">16.06.2023</td>
+                            <td class="py-4"><span class="bg-green-100 text-green-700 px-3 py-1.5 rounded-md text-xs font-bold">Reçu</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-50">
+                            <td class="py-4 font-medium">332</td>
+                            <td class="py-4 font-semibold">Fuite Eau Commune</td>
+                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=13" class="w-7 h-7 rounded-full"> Gior Syndic</td>
+                            <td class="py-4 text-gray-500">27.03.2023</td>
+                            <td class="py-4"><span class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-md text-xs font-bold">En cours</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 font-medium">333</td>
+                            <td class="py-4 font-semibold">Panne Ascenseur B</td>
+                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=14" class="w-7 h-7 rounded-full"> Gior Syndic</td>
+                            <td class="py-4 text-gray-500">15.03.2023</td>
+                            <td class="py-4"><span class="bg-red-100 text-red-700 px-3 py-1.5 rounded-md text-xs font-bold">Urgent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-bold text-gray-800 text-lg mb-5">Rappels & Tâches</h3>
+                <ul class="space-y-5 text-base font-semibold text-gray-700">
+                    <li class="flex flex-col"><span>Next AG</span><span class="text-sm text-gray-400 font-normal">15 Juin</span></li>
+                    <li class="flex flex-col"><span>Relances Charges</span><span class="text-sm text-gray-400 font-normal">25 Mai</span></li>
+                    <li class="flex flex-col"><span>Validation Factures</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 min-h-[300px] flex flex-col">
+                <h3 class="font-bold text-gray-800 text-base mb-4">Tendances des Incidents (3 mois)</h3>
+                <div class="flex-1 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-dashed border-gray-200">
+                    (Espace Chart.js: Line Chart Hna)
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 min-h-[300px] flex flex-col">
+                <h3 class="font-bold text-gray-800 text-base mb-4 flex flex-col">
+                    <span>Status des Appels de Fonds</span>
+                    <span class="text-sm text-gray-400 font-normal mt-1">Budget Prévisionnel vs Réalisé</span>
+                </h3>
+                <div class="flex-1 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-dashed border-gray-200">
+                    (Espace Chart.js: Bar Chart Hna)
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
