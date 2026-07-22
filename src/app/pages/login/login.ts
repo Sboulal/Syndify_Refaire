@@ -1,29 +1,33 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // 1. Zidna FormsModule
+import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule], // 2. Ajoutinah f les imports
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
+  showLogin: boolean = false;
   email: string = '';
   password: string = '';
+  errorMessage: string = ''; 
+
   private router = inject(Router);
 
   onSubmit() {
-    // 3. Logique fake bach n-testiw les deux rôles
+    this.errorMessage = ''; 
+
+    // Verification بسيطة غير باش تيستي الـ Interfaces
     if (this.email.toLowerCase().includes('syndic')) {
-      localStorage.setItem('userRole', 'syndic');
       this.router.navigate(['/syndic/dashboard']);
     } else if (this.email.toLowerCase().includes('copro')) {
-      localStorage.setItem('userRole', 'coproprietaire');
       this.router.navigate(['/copro/espace']);
     } else {
-      alert('Veuillez utiliser un email contenant "syndic" ou "copro" pour tester l\'interface.');
+      this.errorMessage = 'Email awla mot de passe ghalat.';
     }
   }
 }

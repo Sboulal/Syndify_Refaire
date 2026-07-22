@@ -1,0 +1,112 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <app-page-header
+                breadcrumbActive="Appels de fonds"
+                title="Appels de fonds"
+                subtitle="Consultez et gérez les appels de fonds de votre résidence."
+                buttonText="Nouvel appel de fonds"
+                buttonIcon="fa-plus">
+
+                <div exercice-selector class="flex items-center">
+                    <span class="text-sm font-medium text-white/90 mr-3">Exercice :</span>
+                    <div class="relative">
+                        <select class="appearance-none bg-white/10 border border-white/10 text-white text-sm font-medium rounded-lg pl-4 pr-10 py-1.5 w-56 focus:outline-none focus:ring-1 focus:ring-white/30 cursor-pointer">
+                            <option class="text-slate-800">Aucun Exercice</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-white/60 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+            </app-page-header>
+
+            <!-- Conteneur principal blanc avec ombre -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
+                
+                <!-- Tabs -->
+                <div class="flex items-center gap-8 border-b border-slate-200 mb-8 px-2">
+                    <button (click)="switchTab('previsionnel')" 
+                            [ngClass]="activeTab === 'previsionnel' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Appels de fonds du budget prévisionnel
+                    </button>
+                    <button (click)="switchTab('travaux')" 
+                            [ngClass]="activeTab === 'travaux' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Appels de fonds du budget travaux
+                    </button>
+                </div>
+
+                <!-- SECTION 1: Appels de fonds planifiés -->
+                <div class="mb-12">
+                    <div class="px-2 mb-4">
+                        <h2 class="text-lg font-bold text-slate-800">Appels de fonds planifiés</h2>
+                        <p class="text-[13px] text-slate-500 mt-1">Génération et suivi des appels réguliers de l'exercice.</p>
+                    </div>
+                    
+                    <div class="w-full overflow-x-auto pb-4">
+                        <table class="syndify-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th class="text-center">Généré</th>
+                                    <th class="text-center">Envoyé</th>
+                                    <th class="text-right">Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Ligne vide (Placeholder) -->
+                                <tr class="bg-slate-50/30">
+                                    <td colspan="4" class="px-6 py-8"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: Appels de fonds exceptionnels -->
+                <div>
+                    <div class="px-2 mb-4">
+                        <h2 class="text-lg font-bold text-slate-800">Appels de fonds exceptionnels</h2>
+                        <p class="text-[13px] text-slate-500 mt-1">Génération et suivi des appels pour les imprévus ou travaux.</p>
+                    </div>
+                    
+                    <div class="w-full overflow-x-auto pb-4">
+                        <table class="syndify-table">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/6">Date</th>
+                                    <th class="w-1/4">Libellé</th>
+                                    <th class="w-1/4">Clé de répartition</th>
+                                    <th class="text-center w-1/12">Généré</th>
+                                    <th class="text-center w-1/12">Envoyé</th>
+                                    <th class="text-right w-1/6">Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- État vide avec le nouveau style de l'icône dossier -->
+                                <tr>
+                                    <td colspan="6" class="px-6 py-16 text-center border-t border-slate-50">
+                                        <div class="flex flex-col items-center justify-center">
+                                            <div class="bg-slate-50 rounded-2xl w-24 h-24 flex items-center justify-center mb-4 shadow-inner border border-slate-100">
+                                                <i class="fa-regular fa-folder text-5xl text-slate-300"></i>
+                                            </div>
+                                            <p class="text-[14px] text-slate-400 font-medium italic">Aucun appel de fonds exceptionnel trouvé.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>

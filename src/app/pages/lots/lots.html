@@ -1,0 +1,92 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <app-sidebar role="coproprietaire"></app-sidebar>
+
+    <main class="flex-1 overflow-y-auto p-8">
+        
+        <!-- 1. Header w Action Bar mktobin marra we7da f l'component -->
+        <app-page-header 
+            breadcrumbActive="Gestion des Biens"
+            title="Gestion des Biens"
+            subtitle="Gérez l'ensemble de vos biens en toute simplicité."
+            buttonText="Ajouter un bien"
+            buttonIcon="fa-plus"
+            (actionClicked)="ajouterBien()">
+        </app-page-header>
+
+        <!-- 2. Table Card -->
+        <div class="bg-white rounded-[24px] shadow-sm border border-slate-200/60 p-6">
+            <div class="overflow-x-auto">
+                
+                <!-- Tableau bl classe globale -->
+                <table class="syndify-table">
+                    <thead>
+                        <tr>
+                            <th>Identifiant</th>
+                            <th>Type du bien</th>
+                            <th class="text-center">N° de porte</th>
+                            <th class="text-center">Bâtiment</th>
+                            <th class="text-center">Étage</th>
+                            <th class="text-right">Outils</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Espacement (nzidou !py-0 bach mayt2aterch bl padding l3am) -->
+                        <tr><td colspan="6" class="h-2 !py-0"></td></tr>
+                        
+                        <!-- Cas: Aucun lot (Vide) -->
+                        <tr *ngIf="!lots || lots.length === 0">
+                            <td colspan="6" class="py-16">
+                                <div class="flex flex-col items-center justify-center gap-3 text-slate-400">
+                                    <div class="w-16 h-16 rounded-3xl bg-slate-50 flex items-center justify-center text-[#163337] mb-1">
+                                        <i class="fa-regular fa-folder-open text-2xl"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-slate-500">Aucun lot trouvé.</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Cas: M3emmer (tzadit fiha syndify-row) -->
+                        <tr *ngFor="let lot of lots" class="syndify-row">
+                            <td class="font-semibold text-slate-500 pl-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-50 text-[#163337] flex items-center justify-center font-bold text-xs">
+                                        <i class="fa-solid fa-house text-[10px]"></i>
+                                    </div>
+                                    {{ lot.identifiant }}
+                                </div>
+                            </td>
+                            <td class="font-bold text-slate-800">{{ lot.type }}</td>
+                            <td class="font-medium text-slate-600 text-center">{{ lot.numPorte }}</td>
+                            <td class="font-medium text-slate-600 text-center">{{ lot.batiment }}</td>
+                            <td class="font-medium text-slate-600 text-center">{{ lot.etage }}</td>
+                            <td class="text-right pr-4">
+                                <div class="flex items-center justify-end gap-2">
+                                    <!-- Boutons b classes sghar -->
+                                    <button class="btn-action edit" title="Modifier">
+                                        <i class="fa-solid fa-pen text-[10px]"></i>
+                                    </button>
+                                    <button class="btn-action delete" title="Supprimer">
+                                        <i class="fa-solid fa-trash text-[10px]"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination bl classe globale -->
+            <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500 font-bold">
+                <button class="btn-pagination">
+                    <i class="fa-solid fa-chevron-left text-[10px]"></i> Précédent
+                </button>
+                <span>Page {{ page }} / {{ totalPages || 1 }}</span>
+                <button class="btn-pagination">
+                    Suivant <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+            </div>
+        </div>
+
+    </main>
+</div>

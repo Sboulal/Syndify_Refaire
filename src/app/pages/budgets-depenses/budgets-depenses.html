@@ -1,0 +1,105 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <app-sidebar></app-sidebar>
+
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <app-page-header
+                breadcrumbActive="Budgets & dépenses"
+                title="Budgets & dépenses"
+                subtitle="Gérez l'ensemble de vos biens en toute simplicité."
+                [buttonText]="activeTab === 'budgets' ? 'Nouveau mouvement' : 'Nouvelle dépense'"
+                buttonIcon="fa-plus"
+                (actionClicked)="onNouveauClick()">
+
+                <div exercice-selector class="flex items-center">
+                    <span class="text-sm font-medium text-white/90 mr-3">Exercice :</span>
+                    <div class="relative">
+                        <select class="appearance-none bg-[#112528] border border-white/10 text-white text-sm font-medium rounded-lg pl-4 pr-10 py-1.5 focus:outline-none focus:ring-1 focus:ring-white/30 cursor-pointer">
+                            <option>Aucun Exercice</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-white/70 text-[10px] pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <button extra-actions (click)="onTelechargerClick()" 
+                        class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Télécharger le relevé
+                </button>
+            </app-page-header>
+
+            <!-- Card blanche englobant tabs + contenu -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 px-8 py-6">
+
+                <div class="flex items-center gap-8 border-b border-slate-200 mb-8">
+                    <button (click)="switchTab('budgets')" 
+                            [ngClass]="activeTab === 'budgets' ? 'border-slate-800 text-slate-800 font-bold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Budget prévisionnel
+                    </button>
+                    <button (click)="switchTab('depenses')" 
+                            [ngClass]="activeTab === 'depenses' ? 'border-slate-800 text-slate-800 font-bold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Budget travaux
+                    </button>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-[17px] font-extrabold text-slate-800">Montants totaux des opérations</h2>
+                    <p class="text-[13px] text-slate-500 mb-4 mt-1">Vue d'ensemble sur l'état financier du budget.</p>
+                    
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-800 border-b border-slate-200 text-xs uppercase tracking-wider font-bold">
+                            <tr>
+                                <th class="py-3">Budget total</th>
+                                <th class="py-3">Total des encaissements</th>
+                                <th class="py-3">Total des dépenses</th>
+                                <th class="py-3">Le reste</th>
+                                <th class="py-3">Total Dû</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-700 font-bold text-base">
+                            <tr>
+                                <td class="py-4">0,00 <span class="text-[11px] text-slate-400 font-normal">MAD</span></td>
+                                <td class="py-4 text-emerald-600">0,00 <span class="text-[11px] text-slate-400 font-normal">MAD</span></td>
+                                <td class="py-4 text-rose-600">0,00 <span class="text-[11px] text-slate-400 font-normal">MAD</span></td>
+                                <td class="py-4">0,00 <span class="text-[11px] text-slate-400 font-normal">MAD</span></td>
+                                <td class="py-4">0,00 <span class="text-[11px] text-slate-400 font-normal">MAD</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h2 class="text-[17px] font-extrabold text-slate-800">Liste des opérations de l'exercice</h2>
+                    <p class="text-[13px] text-slate-500 mb-4 mt-1">Détail des mouvements d'entrées et de sorties.</p>
+                    
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-800 border-b border-slate-200 text-xs uppercase tracking-wider font-bold">
+                            <tr>
+                                <th class="py-3 w-1/4">Date</th>
+                                <th class="py-3 w-2/5">Libellé</th>
+                                <th class="py-3 w-1/4">Type</th>
+                                <th class="py-3 text-right w-1/6">Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="py-16 text-center">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <i class="fa-regular fa-folder-open text-4xl text-slate-300 mb-3"></i>
+                                        <p class="text-[13px] text-slate-400 font-medium italic">Aucune opération trouvée pour cet exercice.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</div>

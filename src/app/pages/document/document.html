@@ -1,0 +1,139 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <main class="flex-1 flex flex-col overflow-y-auto p-8">
+
+        <app-page-header
+            breadcrumbActive="Documents"
+            title="Gestion des Documents"
+            subtitle="Accédez et gérez tous les documents de votre copropriété en toute simplicité."
+            buttonText="Ajouter un document"
+            buttonIcon="fa-plus"
+            (actionClicked)="onAjouterDocument()">
+
+            <div exercice-selector class="flex items-center gap-4">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-xs"></i>
+                    <input
+                        type="text"
+                        [(ngModel)]="searchTerm"
+                        placeholder="Rechercher un document..."
+                        class="pl-10 pr-4 py-2.5 text-sm font-medium border border-white/10 rounded-xl bg-white/10 text-white placeholder:text-white/40 outline-none focus:ring-1 focus:ring-white/30 w-64">
+                </div>
+
+                <div class="relative">
+                    <select
+                        [(ngModel)]="selectedCategorie"
+                        class="appearance-none text-sm font-medium border border-white/10 rounded-xl pl-4 pr-10 py-2.5 outline-none text-white bg-white/10 focus:ring-1 focus:ring-white/30 w-52 cursor-pointer">
+                        <option value="" class="text-slate-800">Toutes les catégories</option>
+                        <option *ngFor="let cat of categories" [value]="cat" class="text-slate-800">{{ cat }}</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-white/40 text-xs pointer-events-none"></i>
+                </div>
+            </div>
+        </app-page-header>
+
+        <!-- Conteneur principal -->
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 min-h-[400px] flex flex-col">
+            
+            <!-- Table Container Unifié -->
+            <div class="w-full overflow-x-auto pb-4">
+                <table class="syndify-table">
+                    <thead>
+                        <tr>
+                            <th class="w-1/4">Nom du document</th>
+                            <th class="w-1/5">Catégorie</th>
+                            <th class="w-1/5 text-center">Date d'ajout</th>
+                            <th class="w-1/6 text-center">Taille</th>
+                            <th class="w-1/6 text-right">Outils</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Lignes de données -->
+                        <tr *ngFor="let doc of documentsFiltres">
+                            <!-- Nom + icône type de fichier -->
+                            <td>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border border-slate-100 shadow-sm"
+                                         [ngClass]="getIconBg(doc.type)">
+                                        <i [ngClass]="getIconClass(doc.type)" class="text-sm"></i>
+                                    </div>
+                                    <span class="font-bold text-slate-800">{{ doc.nom }}</span>
+                                </div>
+                            </td>
+
+                            <!-- Catégorie -->
+                            <td>
+                                <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg border"
+                                      [ngClass]="getCategorieBadge(doc.categorie)">
+                                    {{ doc.categorie }}
+                                </span>
+                            </td>
+
+                            <!-- Date -->
+                            <td class="text-center font-medium text-slate-500">
+                                {{ doc.dateAjout | date:'dd.MM.yyyy' }}
+                            </td>
+
+                            <!-- Taille -->
+                            <td class="text-center font-medium text-slate-500">
+                                {{ formatTaille(doc.tailleOctets) }}
+                            </td>
+
+                            <!-- Outils -->
+                            <td>
+                                <div class="flex items-center justify-end gap-2">
+                                    <button (click)="onTelecharger(doc)" title="Télécharger"
+                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-[#132b2e] hover:bg-slate-100 transition-colors border border-transparent hover:border-slate-200">
+                                        <i class="fa-solid fa-download text-xs"></i>
+                                    </button>
+                                    <button (click)="onApercu(doc)" title="Aperçu"
+                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-sky-600 hover:bg-sky-50 transition-colors border border-transparent hover:border-sky-100">
+                                        <i class="fa-regular fa-eye text-xs"></i>
+                                    </button>
+                                    <button (click)="onSupprimer(doc)" title="Supprimer"
+                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors border border-transparent hover:border-red-100">
+                                        <i class="fa-regular fa-trash-can text-xs"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- État vide (Empty state) -->
+                        <tr *ngIf="!documentsFiltres || documentsFiltres.length === 0">
+                            <td colspan="5" class="py-24 text-center border-t border-slate-50">
+                                <div class="flex flex-col items-center justify-center">
+                                    <div class="bg-slate-50 rounded-2xl w-24 h-24 flex items-center justify-center mb-4 shadow-inner border border-slate-100">
+                                        <i class="fa-regular fa-folder-open text-5xl text-slate-300"></i>
+                                    </div>
+                                    <p class="text-[14px] text-slate-400 font-medium italic">Aucun document trouvé.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer pagination -->
+            <div *ngIf="documentsFiltres && documentsFiltres.length > 0"
+                 class="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500 font-medium">
+                <span>{{ documentsFiltres.length }} document(s)</span>
+                <div class="flex items-center gap-4">
+                    <button (click)="pagePrecedente()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-50 text-slate-600 transition-colors border border-transparent hover:border-slate-200">
+                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                        Précédent
+                    </button>
+                    <span class="text-slate-800 font-bold bg-slate-50 px-3 py-1 rounded-md border border-slate-100">{{ page }} / {{ totalPages }}</span>
+                    <button (click)="pageSuivante()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-50 text-slate-600 transition-colors border border-transparent hover:border-slate-200">
+                        Suivant
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+</div>

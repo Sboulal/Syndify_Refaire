@@ -1,0 +1,72 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <!-- Integration dyal Page Header -->
+            <app-page-header
+                breadcrumbActive="Les impayés"
+                title="Les impayés"
+                subtitle="Gérez l'ensemble de vos biens en toute simplicité."
+                [showActionButton]="false">
+                
+                <!-- Injection dyal Total f la zone gauche (exercice-selector) -->
+                <div exercice-selector class="flex items-center">
+                    <span class="text-[15px] font-medium text-white mr-2">Total à recouvrer :</span>
+                    <span class="text-[15px] font-black text-white">
+                        {{ totalARecouvrer | number:'1.0-0' }} <span class="font-bold text-white/70 text-[11px] uppercase ml-0.5">MAD</span>
+                    </span>
+                </div>
+            </app-page-header>
+
+            <!-- Main Card (Table) -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-separate" style="border-spacing: 0;">
+                        <thead class="text-slate-700 text-[11px] uppercase tracking-wider font-extrabold">
+                            <tr>
+                                <th class="bg-slate-100 py-3.5 pl-6 rounded-l-xl w-1/5">IDENTIFIANT</th>
+                                <th class="bg-slate-100 py-3.5 w-1/4 text-center">COPROPRIÉTAIRE</th>
+                                <th class="bg-slate-100 py-3.5 w-1/4 text-center">CONTACT</th>
+                                <th class="bg-slate-100 py-3.5 text-center w-1/6">MONTANT DÛ</th>
+                                <th class="bg-slate-100 py-3.5 text-right pr-6 rounded-r-xl w-1/6">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5" class="h-3"></td></tr>
+
+                            <!-- État Vide -->
+                            <tr *ngIf="!impayes || impayes.length === 0">
+                                <td colspan="5" class="py-16 text-center">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div class="w-16 h-16 rounded-3xl bg-slate-50 flex items-center justify-center text-[#163337] mb-3">
+                                            <i class="fa-solid fa-folder-open text-[28px]"></i>
+                                        </div>
+                                        <p class="text-[13px] text-slate-400 font-medium italic">Aucun impayé trouvé. Tous les copropriétaires sont à jour !</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Lignes de données -->
+                            <tr *ngFor="let i of impayes" class="text-[13px] group">
+                                <td class="py-4 border-b border-slate-50 group-last:border-0 font-bold text-slate-500 pl-2">#{{ i.identifiant }}</td>
+                                <td class="py-4 border-b border-slate-50 group-last:border-0 font-bold text-slate-800 text-center">{{ i.coproprietaire }}</td>
+                                <td class="py-4 border-b border-slate-50 group-last:border-0 text-slate-600 text-center">{{ i.contact }}</td>
+                                <td class="py-4 border-b border-slate-50 group-last:border-0 text-center font-black text-rose-600">{{ i.montantDu | number }} MAD</td>
+                                <td class="py-4 border-b border-slate-50 group-last:border-0 text-right pr-2">
+                                    <button (click)="onRelancer(i)" class="text-[#163337] font-bold hover:underline">Relancer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>

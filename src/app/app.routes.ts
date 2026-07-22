@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 
-// 1. Zidi les imports dyal les composants jdad hna
-// (Bdl les chemins 3la 7ssab fin 7titi les composants f l'projet dyalk)
+// 1. Les imports dyal les composants dyal Syndic w Copro
 import { SyndicDashboard } from './pages/syndic-dashboard/syndic-dashboard';
-import { CoproDashboard} from './pages/copro-dashboard/copro-dashboard';
+import { CoproDashboard } from './pages/copro-dashboard/copro-dashboard';
+import { Document } from './pages/document/document';
+import { Lots } from './pages/lots/lots';
+import { CoproListes } from './pages/copro-listes/copro-listes';
+import { BudgetsDepenses } from './pages/budgets-depenses/budgets-depenses';
+import { Appelsdefonds } from './pages/appelsdefonds/appelsdefonds';
+import { Simulerbudget } from './pages/simulerbudget/simulerbudget';
+import { Exercices } from './pages/exercices/exercices';
+import { Cle } from './pages/cle/cle';
+import { Impayee } from './pages/impayee/impayee';
 
 export const routes: Routes = [
   // Page par défaut (Redirection vers le login)
@@ -21,9 +29,15 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: SyndicDashboard },
-      // Hna t9edri tzidi les autres pages dyal syndic mn b3d, matalan:
-      // { path: 'residences', component: ResidencesComponent },
-      // { path: 'finance', component: FinanceComponent },
+      { path: 'documents', component: Document },
+      { path: 'lots', component: Lots },
+      { path: 'copro-listes', component: CoproListes },
+      { path: 'budgets', component: BudgetsDepenses },
+      { path: 'appels-fonds', component: Appelsdefonds },
+      { path: 'simuler-budget', component: Simulerbudget },
+      { path: 'exercices', component: Exercices },
+      {path: 'cles', component: Cle},
+      {path: 'impayee', component: Impayee}
     ]
   },
 
@@ -34,9 +48,7 @@ export const routes: Routes = [
     path: 'copro', 
     children: [
       { path: '', redirectTo: 'espace', pathMatch: 'full' },
-      { path: 'espace', component: CoproDashboard},
-      // Hna t9edri tzidi les autres pages dyal copro mn b3d, matalan:
-      // { path: 'charges', component: MesChargesComponent },
+      { path: 'espace', component: CoproDashboard },
     ]
   },
 

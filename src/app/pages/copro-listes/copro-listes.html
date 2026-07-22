@@ -1,0 +1,96 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+
+    <!-- Sidebar -->
+    <app-sidebar role="syndic"></app-sidebar>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <app-page-header
+                breadcrumbActive="Copropriétaires"
+                title="Copropriétaires"
+                subtitle="Gérez l'ensemble de vos copropriétaires en toute simplicité."
+                buttonText="Ajouter un copropriétaire"
+                buttonIcon="fa-plus"
+                userRole="Syndic"
+                (actionClicked)="onAjouterCopro()">
+
+                <div exercice-selector class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-xs"></i>
+                    <input
+                        type="text"
+                        [(ngModel)]="searchTerm"
+                        placeholder="Rechercher un copropriétaire..."
+                        class="pl-10 pr-4 py-2.5 text-sm font-medium border border-white/10 rounded-xl bg-white/10 text-white placeholder:text-white/40 outline-none focus:ring-1 focus:ring-white/30 w-80">
+                </div>
+            </app-page-header>
+
+            <!-- Conteneur principal -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 flex flex-col min-h-[400px]">
+                
+                <!-- Tabs -->
+                <div class="flex items-center gap-8 border-b border-slate-200 mb-8 px-2 overflow-x-auto">
+                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-slate-800 text-slate-900 font-extrabold whitespace-nowrap">
+                        Copropriétaires Actifs
+                    </button>
+                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">
+                        Copropriétaires Inactifs
+                    </button>
+                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-transparent text-slate-500 hover:text-slate-700 flex items-center gap-2 whitespace-nowrap">
+                        En attente
+                        <span class="bg-rose-50 border border-rose-100 text-rose-600 py-0.5 px-2 rounded-md text-[10px] font-black">2</span>
+                    </button>
+                </div>
+
+                <!-- Table Container -->
+                <div class="w-full overflow-x-auto pb-4">
+                    <table class="syndify-table">
+                        <thead>
+                            <tr>
+                                <th class="w-32">Identifiant</th>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                <th class="text-center">N° (Lots)</th>
+                                <th class="text-center">Statut</th>
+                                <th class="text-right w-24">Outils</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- Cas 1 : Vide -->
+                            <tr *ngIf="!coproprietaires || coproprietaires.length === 0">
+                                <td colspan="7" class="py-24 text-center border-t border-slate-50">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div class="bg-slate-50 rounded-2xl w-24 h-24 flex items-center justify-center mb-4 shadow-inner border border-slate-100">
+                                            <i class="fa-regular fa-folder-open text-5xl text-slate-300"></i>
+                                        </div>
+                                        <p class="text-[14px] text-slate-400 font-medium italic">Aucun copropriétaire trouvé.</p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Cas 2 : Lignes de données -->
+                            <tr *ngFor="let copro of coproprietaires" class="border-b border-slate-50 hover:bg-slate-50/60 transition-colors">
+                                <td class="py-4 px-5 font-bold text-slate-400">
+                                    #{{ copro.identifiant }}
+                                </td>
+                                
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-lg bg-[#132b2e]/10 text-[#132b2e] flex items-center justify-center text-xs font-black border border-[#132b2e]/10">
+                                            {{ copro.nom?.charAt(0) | uppercase }}
+                                        </div>
+                                        <span class="font-bold text-slate-800">{{ copro.nom }}</span>
+                                    </div>
+                                </td>
+
+                                <td class="py-4 px-5 font-medium text-slate-500">{{ copro.telephone }}</td>
+                                <td class="py-4 px-5 font-medium text-slate-500">{{ copro.email }}</td>
+                                
+                                <td class="py-4 px-5 text-center">
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200/60">
+                                        {{ copro.lots }}
+                                    </span>

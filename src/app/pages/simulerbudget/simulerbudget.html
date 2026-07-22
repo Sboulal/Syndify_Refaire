@@ -1,0 +1,84 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <app-page-header
+                breadcrumbActive="Simulateur de budget"
+                title="Simulateur de budget"
+                subtitle="Simulez l'impact de vos décisions financières sur votre copropriété."
+                buttonText="Générer le résultat"
+                buttonIcon="fa-plus"
+                (actionClicked)="onGenererResultat()">
+
+                <div exercice-selector class="flex items-center gap-4">
+                    <!-- Select Clé -->
+                    <div class="relative">
+                        <select [(ngModel)]="cleSelectionnee"
+                                class="appearance-none bg-white/10 border border-white/10 text-white text-sm font-medium rounded-lg pl-4 pr-10 py-2.5 w-56 focus:outline-none focus:ring-1 focus:ring-white/30 cursor-pointer">
+                            <option value="" class="text-slate-800">Sélectionnez une clé...</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-white/60 text-xs pointer-events-none"></i>
+                    </div>
+
+                    <!-- Input Montant -->
+                    <div class="relative flex items-center bg-white/10 border border-white/10 rounded-lg overflow-hidden">
+                        <input type="text" [(ngModel)]="montant" placeholder="0.00" 
+                               class="bg-transparent text-white text-sm font-medium pl-4 py-2.5 w-28 focus:outline-none text-right pr-2 placeholder:text-white/40">
+                        <span class="text-white/60 text-sm font-bold pr-4">MAD</span>
+                    </div>
+                </div>
+            </app-page-header>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
+                <!-- Tabs -->
+                <div class="flex items-center gap-8 border-b border-slate-200 mb-8 px-2">
+                    <button (click)="switchTab('coproprietaire')" 
+                            [ngClass]="activeTab === 'coproprietaire' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Par copropriétaire
+                    </button>
+                    <button (click)="switchTab('bien')" 
+                            [ngClass]="activeTab === 'bien' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700'"
+                            class="pb-3 text-sm border-b-2 transition-colors duration-200">
+                        Par bien
+                    </button>
+                </div>
+
+                <!-- Conteneur de Table Unifié -->
+                <div class="w-full overflow-x-auto pb-4">
+                    <table class="syndify-table">
+                        <thead>
+                            <tr>
+                                <th>{{ activeTab === 'coproprietaire' ? 'Nom du copropriétaire' : 'Désignation du bien' }}</th>
+                                <th class="text-center">Tantièmes</th>
+                                <th class="text-center">Budget</th>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- État vide -->
+                            <tr>
+                                <td colspan="4" class="py-20 text-center border-t border-slate-50">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div class="bg-slate-50 rounded-2xl w-28 h-28 flex items-center justify-center mb-5 shadow-inner border border-slate-100">
+                                            <i class="fa-solid fa-info text-5xl text-slate-300"></i>
+                                        </div>
+                                        <p class="text-[14px] text-slate-400 font-medium italic">Aucune simulation générée pour le moment.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</div>

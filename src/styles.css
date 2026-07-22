@@ -1,4 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Classe principale dyal le tableau */
+  .syndify-table {
+    @apply w-full text-left text-sm border-separate;
+    border-spacing: 0;
+  }
+
+  /* Design dyal Header (tr w th) */
+  .syndify-table thead tr {
+    @apply text-slate-600 uppercase tracking-wider text-[11px];
+  }
+
+  .syndify-table thead th {
+    @apply bg-slate-100 py-3.5 font-extrabold;
+  }
+
+  /* Arrondir les coins dyal awel w akher colonne f l'header */
+  .syndify-table thead th:first-child {
+    @apply pl-5 rounded-l-2xl;
+  }
+
+  .syndify-table thead th:last-child {
+    @apply pr-5 rounded-r-2xl;
+  }
+}

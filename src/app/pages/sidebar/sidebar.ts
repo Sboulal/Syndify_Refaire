@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,8 +9,30 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.html'
 })
-export class SidebarComponent {
-  @Input() role: 'syndic' | 'coproprietaire' = 'syndic';
+export class SidebarComponent implements OnInit {
+  isCoproOpen: boolean = false;
+  isFinanceOpen: boolean = false;
+  @Input() role: 'syndic' | 'coproprietaire' = 'coproprietaire';
+
+  coproRoutes = ['/syndic/lots', '/syndic/copro-listes', '/syndic/cles', '/syndic/impayee'];
+  financeRoutes = ['/syndic/budgets', '/syndic/appels-fonds', '/syndic/simuler-budget'];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.updateOpenState(this.router.url);
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.updateOpenState(event.urlAfterRedirects);
+      });
+  }
+
+  private updateOpenState(url: string) {
+    this.isCoproOpen = this.coproRoutes.some(r => url.startsWith(r));
+    this.isFinanceOpen = this.financeRoutes.some(r => url.startsWith(r));
+  }
 
   // Les liens dyal Syndic b les icons FontAwesome
   syndicMenu = [

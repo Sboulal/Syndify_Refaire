@@ -1,0 +1,46 @@
+<!-- Header Principal -->
+<header class="flex justify-between items-start mb-6">
+    <div class="flex flex-col gap-1">
+        <div class="text-xs text-slate-400 font-bold uppercase tracking-wide">
+            Copropriétés <span class="mx-1">›</span>  Les Jardins de Majorelle <span class="mx-1">›</span>
+            <span class="text-[#163337]">{{ breadcrumbActive }}</span>
+        </div>
+        <h2 class="text-3xl font-black text-slate-800 tracking-tight">{{ title }}</h2>
+        <p class="text-sm text-slate-500 font-medium mt-1">{{ subtitle }}</p>
+    </div>
+    
+    <!-- Profile Area -->
+    <div class="flex items-center gap-4">
+        <button class="relative w-11 h-11 rounded-full bg-white text-slate-400 hover:text-[#163337] flex items-center justify-center transition shadow-sm border border-slate-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            <span *ngIf="hasNotification" class="absolute top-2.5 right-3 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
+        </button>
+        <div class="flex items-center gap-3">
+            <div class="text-right hidden md:block">
+                <div class="text-sm font-black text-slate-800">{{ userName }}</div>
+                <div class="text-xs text-slate-500 font-bold">{{ userRole }}</div>
+            </div>
+            <img [src]="userAvatar" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm">
+        </div>
+    </div>
+</header>
+
+<!-- Ceinture khadra: Exercice (gauche) + Actions (droite) -->
+<!-- 💡 ZEDT HNA 'min-h-[76px]' BACH TB9A DIMA FIXE F L'HAUTEUR DYALHA -->
+<div class="bg-[#163337] rounded-2xl px-6 py-4 flex justify-between items-center gap-3 mb-8 shadow-md shadow-[#163337]/10 min-h-[76px]">
+    
+    <!-- Slot gauche -->
+    <div class="flex items-center">
+        <ng-content select="[exercice-selector]"></ng-content>
+    </div>
+
+    <!-- Actions (droite) -->
+    <div class="flex items-center gap-3" *ngIf="showActionButton">
+        <ng-content select="[extra-actions]"></ng-content>
+
+        <button (click)="onActionClick()" 
+                class="bg-white text-[#163337] px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-100 transition shadow-sm flex items-center gap-2">
+            <i class="fa-solid" [ngClass]="buttonIcon"></i> {{ buttonText }}
+        </button>
+    </div>
+</div>

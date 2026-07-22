@@ -1,0 +1,71 @@
+<div class="flex h-screen bg-slate-50 font-sans">
+    
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Contenu Principal -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <!-- Integration dyal Page Header -->
+            <app-page-header
+                breadcrumbActive="Clés de répartition"
+                title="Clés de répartition"
+                subtitle="Gérez l'ensemble de vos biens en toute simplicité."
+                buttonText="Nouvelle clé"
+                buttonIcon="fa-plus"
+                [showActionButton]="true"
+                (actionClicked)="onAddCle()">
+            </app-page-header>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                
+                <!-- Tabs -->
+                <div class="flex items-center gap-8 border-b border-slate-200 mb-6 px-2">
+                    <button (click)="activeTab = 'biens'" 
+                            [ngClass]="activeTab === 'biens' ? 'border-slate-800 text-slate-800 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700 font-semibold'"
+                            class="pb-4 text-[13px] border-b-2 transition-colors duration-200">
+                        Tantièmes par biens
+                    </button>
+                    <button (click)="activeTab = 'coproprietaires'" 
+                            [ngClass]="activeTab === 'coproprietaires' ? 'border-slate-800 text-slate-800 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700 font-semibold'"
+                            class="pb-4 text-[13px] border-b-2 transition-colors duration-200">
+                        Tantièmes par copropriétaires
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-separate" style="border-spacing: 0;">
+                        <thead class="text-slate-700 text-[11px] uppercase tracking-wider font-extrabold">
+                            <tr>
+                                <th class="bg-slate-100 py-3.5 pl-6 rounded-l-xl w-1/3">BIEN</th>
+                                <th class="bg-slate-100 py-3.5 w-1/3 text-center">COPROPRIÉTAIRE</th>
+                                <th class="bg-slate-100 py-3.5 text-right pr-6 rounded-r-xl w-1/3">CLÉ DE RÉPARTITION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="3" class="h-3"></td></tr>
+
+                            <!-- État Vide -->
+                            <tr *ngIf="!cles || cles.length === 0">
+                                <td colspan="3" class="py-16 text-center">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div class="w-16 h-16 rounded-3xl bg-slate-50 flex items-center justify-center text-[#163337] mb-3">
+                                            <i class="fa-solid fa-folder-open text-[28px]"></i>
+                                        </div>
+                                        <p class="text-[13px] text-slate-400 font-medium italic">Aucune clé de répartition trouvée.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>

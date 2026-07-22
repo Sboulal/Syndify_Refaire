@@ -1,127 +1,238 @@
-<div class="flex h-screen bg-slate-50">
-    
-    <app-sidebar role="syndic"></app-sidebar>
-    
-    <main class="flex-1 overflow-y-auto p-6">
-        
-        <header class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm mb-6 border border-gray-100">
-            <div class="text-base font-medium text-gray-700">
-                Bienvenue, <span class="font-bold text-gray-900">Nabil Qadri</span>! | Résidence : <span class="font-semibold text-gray-800">Les Jardins de Majorelle</span>
+
+
+
+<div class="flex h-screen bg-slate-50 font-sans">
+
+    <app-sidebar role="coproprietaire"></app-sidebar>
+
+    <main class="flex-1 overflow-y-auto p-8">
+
+        <!-- Header -->
+        <header class="flex justify-between items-start mb-10">
+            <div class="flex flex-col gap-1">
+                <div class="text-xs text-slate-400 font-bold uppercase tracking-wide">
+                    Copropriétés <span class="mx-1">›</span> Les Jardins de Majorelle  <span class="mx-1">›</span>
+                    <span class="text-[#163337]">Tableau de bord</span>
+                </div>
+                <h2 class="text-3xl font-black text-slate-800 tracking-tight">Tableau de bord</h2>
+                <p class="text-sm text-slate-500 font-medium mt-1">Aperçu général de votre situation et de la résidence <span class="text-[#163337] font-bold">Les Jardins de Majorelle</span></p>
             </div>
-            <div class="flex items-center gap-4">
-                <button class="relative p-2 text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
-                </button>
-                <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-10 h-10 rounded-full border border-gray-200">
+            
+            <div class="flex items-center gap-6">
+                <!-- Action Buttons -->
+                <div class="flex items-center gap-3">
+                    <select class="text-sm border-none rounded-2xl px-4 py-2.5 outline-none text-slate-600 bg-white hover:bg-slate-100 transition shadow-sm font-semibold cursor-pointer appearance-none">
+                        <option>Aucun Exercice</option>
+                    </select>
+                    <button class="bg-[#163337] text-white px-6 py-2.5 rounded-2xl text-sm font-bold hover:bg-[#0f2427] transition shadow-lg shadow-[#163337]/30 flex items-center gap-2">
+                        <i class="fa-solid fa-plus text-xs"></i> Nouveau Signalement
+                    </button>
+                </div>
+                
+                <div class="h-10 w-px bg-slate-200"></div>
+                
+                <!-- Profile Area -->
+                <div class="flex items-center gap-4">
+                    <button class="relative w-11 h-11 rounded-full bg-white text-slate-400 hover:text-[#163337] flex items-center justify-center transition shadow-sm border border-slate-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        <span class="absolute top-2.5 right-3 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right hidden md:block">
+                            <div class="text-sm font-black text-slate-800">Nabil Qadri</div>
+                            <div class="text-xs text-slate-500 font-bold">Copropriétaire</div>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm">
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="flex justify-between items-center mb-5">
-            <div class="flex items-center gap-3">
-                <h2 class="text-xl font-bold text-[#13243c]">Vue d'ensemble</h2>
-                <span class="text-sm font-semibold bg-orange-100 text-orange-600 px-3 py-1 rounded-full">En cours</span>
-            </div>
-            <button class="bg-[#13243c] text-white px-5 py-2.5 rounded-md text-base font-semibold hover:bg-blue-900 transition shadow-sm">
-                Nouveau Signalement
-            </button>
-        </div>
+        <!-- Section 1 : Soldes & Budget (Grid) -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-                <span class="text-4xl font-bold text-red-500">12</span>
-                <span class="text-sm font-bold text-gray-700 mt-2">Incidents Ouverts</span>
-                <span class="text-xs font-semibold text-gray-400 mt-1">(3 Urgents)</span>
-            </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-                <span class="text-4xl font-bold text-green-500">85%</span>
-                <span class="text-sm font-bold text-gray-700 mt-2">Copropriétaires à Jour</span>
-                <span class="text-xs font-semibold text-gray-400 mt-1">(7 Retards)</span>
-            </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-                <span class="text-xs font-bold text-gray-500">Total Encaissements:</span>
-                <span class="text-2xl font-bold text-green-600 my-2">125,500 MAD</span>
-                <span class="text-xs font-semibold text-gray-400">(Ce Mois)</span>
-            </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-                <span class="text-4xl font-bold text-[#3b82f6]">5</span>
-                <span class="text-sm font-bold text-gray-700 mt-2">Devis en Attente</span>
-                <span class="text-xs font-semibold text-gray-400 mt-1">d'Approbation</span>
-            </div>
-        </div>
+            <!-- Soldes des copropriétaires -->
+            <div class="xl:col-span-2 bg-white rounded-[24px] shadow-sm p-6 flex flex-col justify-between border border-slate-200/60">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="font-black text-slate-800 text-xl">Soldes des copropriétaires</h3>
+                            <span class="text-xs text-slate-400 font-semibold">Suivi des balances et états de paiement par membre.</span>
+                        </div>
+                        <a href="#" class="text-[#163337] text-xs font-bold hover:underline flex items-center gap-1.5">
+                            Voir la liste des impayés <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <div class="flex justify-between items-center mb-5">
-                    <h3 class="font-bold text-gray-800 text-lg">Derniers Incidents Signalés</h3>
-                    <div class="flex gap-3">
-                        <select class="text-sm border border-gray-200 rounded-md px-3 py-1.5 outline-none text-gray-600 bg-gray-50"><option>Filtre...</option></select>
-                        <button class="bg-[#13243c] text-white text-sm px-4 py-1.5 rounded-md flex items-center gap-2">
-                            <i class="fa-solid fa-filter"></i> Filters
-                        </button>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm syndify-table border-separate" style="border-spacing: 0;">
+                            <thead>
+                                <tr class="text-slate-600 uppercase tracking-wider text-[11px]">
+                                    <th class="bg-slate-100 py-3.5 font-extrabold pl-5 w-1/3 rounded-l-2xl">Identifiant</th>
+                                    <th class="bg-slate-100 py-3.5 font-extrabold w-1/3">Nom</th>
+                                    <th class="bg-slate-100 py-3.5 font-extrabold text-right pr-5 w-1/3 rounded-r-2xl">Solde</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-700">
+                                <tr><td colspan="3" class="h-2"></td></tr>
+                                
+                                <tr *ngIf="!soldes || soldes.length === 0">
+                                    <td colspan="3" class="py-12">
+                                        <div class="flex flex-col items-center justify-center gap-2 text-slate-400">
+                                            <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-[#163337] mb-1">
+                                                <i class="fa-regular fa-folder-open text-xl"></i>
+                                            </div>
+                                            <span class="text-sm font-semibold text-slate-500">Aucun solde trouvé.</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let s of soldes" class="border-b border-slate-50 hover:bg-slate-50/70 transition last:border-0">
+                                    <td class="py-4 font-semibold text-slate-500 pl-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-slate-50 text-[#163337] flex items-center justify-center font-bold text-xs">
+                                                <i class="fa-solid fa-user text-[10px]"></i>
+                                            </div>
+                                            {{ s.identifiant }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-bold text-slate-800">{{ s.nom }}</td>
+                                    <td class="py-4 text-right pr-4 font-black" [ngClass]="s.solde < 0 ? 'text-rose-600' : 'text-emerald-500'">
+                                        <span class="bg-slate-50 px-3 py-1.5 rounded-lg">{{ s.solde | number }} MAD</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
-                <table class="w-full text-left text-sm">
-                    <thead>
-                        <tr class="text-gray-500 border-b border-gray-100">
-                            <th class="pb-3 font-semibold">ID</th>
-                            <th class="pb-3 font-semibold">Sujet</th>
-                            <th class="pb-3 font-semibold">Signalé par</th>
-                            <th class="pb-3 font-semibold">Date ↓</th>
-                            <th class="pb-3 font-semibold">Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700">
-                        <tr class="border-b border-gray-50">
-                            <td class="py-4 font-medium">331</td>
-                            <td class="py-4 font-semibold">Panne Ascenseur B</td>
-                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=12" class="w-7 h-7 rounded-full"> Sinan Name</td>
-                            <td class="py-4 text-gray-500">16.06.2023</td>
-                            <td class="py-4"><span class="bg-green-100 text-green-700 px-3 py-1.5 rounded-md text-xs font-bold">Reçu</span></td>
-                        </tr>
-                        <tr class="border-b border-gray-50">
-                            <td class="py-4 font-medium">332</td>
-                            <td class="py-4 font-semibold">Fuite Eau Commune</td>
-                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=13" class="w-7 h-7 rounded-full"> Gior Syndic</td>
-                            <td class="py-4 text-gray-500">27.03.2023</td>
-                            <td class="py-4"><span class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-md text-xs font-bold">En cours</span></td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 font-medium">333</td>
-                            <td class="py-4 font-semibold">Panne Ascenseur B</td>
-                            <td class="py-4 flex items-center gap-3"><img src="https://i.pravatar.cc/150?img=14" class="w-7 h-7 rounded-full"> Gior Syndic</td>
-                            <td class="py-4 text-gray-500">15.03.2023</td>
-                            <td class="py-4"><span class="bg-red-100 text-red-700 px-3 py-1.5 rounded-md text-xs font-bold">Urgent</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div class="flex justify-end items-center mt-4 pt-4 border-t border-slate-100">
+                    <div class="text-xs font-semibold text-slate-500 bg-rose-50 px-4 py-2 rounded-xl">
+                        Total dû <span class="font-black text-rose-600 ml-1.5 text-sm">{{ totalDu | number }} MAD</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <h3 class="font-bold text-gray-800 text-lg mb-5">Rappels & Tâches</h3>
-                <ul class="space-y-5 text-base font-semibold text-gray-700">
-                    <li class="flex flex-col"><span>Next AG</span><span class="text-sm text-gray-400 font-normal">15 Juin</span></li>
-                    <li class="flex flex-col"><span>Relances Charges</span><span class="text-sm text-gray-400 font-normal">25 Mai</span></li>
-                    <li class="flex flex-col"><span>Validation Factures</span></li>
-                </ul>
+            <!-- Consommation du budget (Loun jdid m3a l'menu) -->
+            <div class="bg-[#163337] rounded-[24px] shadow-lg shadow-[#163337]/20 p-6 flex flex-col justify-between text-white relative overflow-hidden">
+                <!-- Abstract Background Shape -->
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-40 h-40 rounded-full bg-white/10 blur-2xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 rounded-full bg-black/30 blur-xl"></div>
+
+                <div class="relative z-10">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="font-black text-white text-xl">Consommation</h3>
+                            <span class="text-[11px] text-white/70 font-semibold block mb-4">Analyse des fonds annuels.</span>
+                        </div>
+                        <select class="bg-white/10 hover:bg-white/20 border-none text-white text-xs font-bold rounded-lg px-3 py-1.5 outline-none cursor-pointer appearance-none text-center transition">
+                            <option class="text-slate-800">Prévisionnel</option>
+                            <option class="text-slate-800">Travaux</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center my-4">
+                        <div class="relative w-36 h-36 flex items-center justify-center mb-2">
+                            <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="10"></circle>
+                                <circle cx="50" cy="50" r="42" fill="none" stroke="#ffffff" stroke-width="10"
+                                        stroke-linecap="round"
+                                        [attr.stroke-dasharray]="264"
+                                        [attr.stroke-dashoffset]="264 - (264 * pourcentageUtilise / 100)"></circle>
+                            </svg>
+                            <div class="absolute flex flex-col items-center">
+                                <span class="text-3xl font-black text-white">{{ pourcentageUtilise }}%</span>
+                                <span class="text-[10px] text-white/70 font-bold uppercase tracking-wider mt-0.5">Utilisé</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-3 gap-2 text-center bg-black/20 p-3 rounded-2xl mt-4 border border-white/5">
+                    <div>
+                        <div class="text-[10px] text-white/60 font-bold uppercase">Total</div>
+                        <div class="text-sm font-black text-white mt-1">{{ budgetTotal | number }}</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-white/60 font-bold uppercase">Dépensé</div>
+                        <div class="text-sm font-black text-white mt-1">{{ depense | number }}</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-white/60 font-bold uppercase">Restant</div>
+                        <div class="text-sm font-black text-white mt-1">{{ restant | number }}</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 min-h-[300px] flex flex-col">
-                <h3 class="font-bold text-gray-800 text-base mb-4">Tendances des Incidents (3 mois)</h3>
-                <div class="flex-1 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-dashed border-gray-200">
-                    (Espace Chart.js: Line Chart Hna)
+        <!-- Section 2 : Flux & Détails (Grid) -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+            <!-- Flux de trésorerie -->
+            <div class="xl:col-span-2 bg-white rounded-[24px] shadow-sm border border-slate-200/60 p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-black text-slate-800 text-xl">Flux de trésorerie</h3>
+                    <div class="flex justify-between items-end mb-4">
+                        <span class="text-xs text-slate-400 font-semibold block">Évolution des encaissements et dépenses.</span>
+                        <div class="flex items-center gap-4 text-xs font-bold text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/40"></span> Encaissements
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/40"></span> Dépenses
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-64 bg-slate-50/50 rounded-2xl flex items-center justify-center text-slate-400 text-sm border border-slate-100 relative overflow-hidden my-2">
+                        <canvas id="fluxTresorerieChart" class="w-full h-full"></canvas>
+                        <span *ngIf="!hasFluxData" class="flex flex-col items-center gap-3 absolute text-slate-300 font-semibold text-xs">
+                            <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                                <i class="fa-solid fa-chart-line text-xl"></i>
+                            </div>
+                            Espace Chart.js (Line Chart)
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 min-h-[300px] flex flex-col">
-                <h3 class="font-bold text-gray-800 text-base mb-4 flex flex-col">
-                    <span>Status des Appels de Fonds</span>
-                    <span class="text-sm text-gray-400 font-normal mt-1">Budget Prévisionnel vs Réalisé</span>
-                </h3>
-                <div class="flex-1 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 text-sm border border-dashed border-gray-200">
-                    (Espace Chart.js: Bar Chart Hna)
+
+            <!-- Détails de l'exercice -->
+            <div class="bg-white rounded-[24px] shadow-sm border border-slate-200/60 p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-black text-slate-800 text-xl">Détails de l'exercice</h3>
+                    <span class="text-xs text-slate-400 font-semibold mb-6 block">Répartition par période.</span>
+
+                    <div class="flex gap-4 mb-6 bg-slate-100/80 p-1.5 rounded-xl">
+                        <button (click)="activeDetailTab = 'previsionnel'"
+                                [ngClass]="activeDetailTab === 'previsionnel' ? 'bg-white text-[#163337] shadow-sm' : 'text-slate-500 hover:text-slate-700'"
+                                class="flex-1 py-2 text-xs font-bold rounded-lg transition">
+                            Prévisionnel
+                        </button>
+                        <button (click)="activeDetailTab = 'travaux'"
+                                [ngClass]="activeDetailTab === 'travaux' ? 'bg-white text-[#163337] shadow-sm' : 'text-slate-500 hover:text-slate-700'"
+                                class="flex-1 py-2 text-xs font-bold rounded-lg transition">
+                            Travaux
+                        </button>
+                    </div>
+
+                    <div class="h-48 flex items-center justify-center text-center" *ngIf="!details || details.length === 0">
+                        <span class="text-slate-400 text-xs font-semibold bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">Aucune donnée pour ce budget.</span>
+                    </div>
+
+                    <div class="space-y-3" *ngIf="details && details.length > 0">
+                        <div *ngFor="let d of details" class="flex justify-between items-center p-3.5 bg-slate-50 hover:bg-slate-100 transition rounded-xl border border-transparent hover:border-slate-200/60">
+                            <span class="font-bold text-slate-700 text-xs flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#163337]"></div>
+                                {{ d.periode }}
+                            </span>
+                            <span class="font-black text-slate-800 text-sm">{{ d.montant | number }} MAD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500 font-bold">
+                    <button class="w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 hover:text-slate-700 flex items-center justify-center transition"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
+                    <span>Page {{ page }} / {{ totalPages || 1 }}</span>
+                    <button class="w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 hover:text-slate-700 flex items-center justify-center transition"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                 </div>
             </div>
         </div>
