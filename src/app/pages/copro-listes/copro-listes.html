@@ -31,18 +31,31 @@
             <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6 flex flex-col min-h-[400px]">
                 
                 <!-- Tabs -->
-                <div class="flex items-center gap-8 border-b border-slate-200 mb-8 px-2 overflow-x-auto">
-                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-slate-800 text-slate-900 font-extrabold whitespace-nowrap">
-                        Copropriétaires Actifs
-                    </button>
-                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">
-                        Copropriétaires Inactifs
-                    </button>
-                    <button class="pb-3 text-sm border-b-2 transition-colors duration-200 border-transparent text-slate-500 hover:text-slate-700 flex items-center gap-2 whitespace-nowrap">
-                        En attente
-                        <span class="bg-rose-50 border border-rose-100 text-rose-600 py-0.5 px-2 rounded-md text-[10px] font-black">2</span>
-                    </button>
-                </div>
+<div class="flex items-center gap-8 border-b border-slate-200 mb-8 px-2 overflow-x-auto">
+    
+    <!-- Onglet: Actifs -->
+    <button (click)="activeTab = 'actifs'" 
+            [ngClass]="activeTab === 'actifs' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'"
+            class="pb-3 text-sm border-b-2 transition-colors duration-200 whitespace-nowrap">
+        Copropriétaires Actifs
+    </button>
+    
+    <!-- Onglet: Inactifs -->
+    <button (click)="activeTab = 'inactifs'" 
+            [ngClass]="activeTab === 'inactifs' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'"
+            class="pb-3 text-sm border-b-2 transition-colors duration-200 whitespace-nowrap">
+        Copropriétaires Inactifs
+    </button>
+    
+    <!-- Onglet: En attente -->
+    <button (click)="activeTab = 'attente'" 
+            [ngClass]="activeTab === 'attente' ? 'border-slate-800 text-slate-900 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'"
+            class="pb-3 text-sm border-b-2 transition-colors duration-200 flex items-center gap-2 whitespace-nowrap">
+        En attente
+        <span class="bg-rose-50 border border-rose-100 text-rose-600 py-0.5 px-2 rounded-md text-[10px] font-black">2</span>
+    </button>
+
+</div>
 
                 <!-- Table Container -->
                 <div class="w-full overflow-x-auto pb-4">

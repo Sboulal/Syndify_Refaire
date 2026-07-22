@@ -15,7 +15,7 @@ export class CoproListes {
   // Variables dyal la pagination
   page: number = 1;
   totalPages: number = 1;
-
+activeTab: 'actifs' | 'inactifs' | 'attente' = 'actifs';
   // Tableau vide par défaut bach tbayan l'état "Aucun copropriétaire trouvé"
   coproprietaires: any[] = [];
 
